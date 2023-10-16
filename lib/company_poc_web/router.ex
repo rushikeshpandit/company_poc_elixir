@@ -20,7 +20,7 @@ defmodule CompanyPocWeb.Router do
   scope "/", CompanyPocWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/", UserRegistrationLive, :home
   end
 
   # Other scopes may use custom stacks.
