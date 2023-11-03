@@ -21,7 +21,6 @@ defmodule CompanyPocWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    resources "/company", CompanyController
   end
 
   # Other scopes may use custom stacks.
@@ -64,6 +63,7 @@ defmodule CompanyPocWeb.Router do
 
   scope "/", CompanyPocWeb do
     pipe_through [:browser, :require_authenticated_user]
+    resources "/company", CompanyController
 
     live_session :require_authenticated_user,
       on_mount: [{CompanyPocWeb.UserAuth, :ensure_authenticated}] do
