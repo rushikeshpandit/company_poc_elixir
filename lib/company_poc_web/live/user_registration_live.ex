@@ -1,5 +1,5 @@
 defmodule CompanyPocWeb.UserRegistrationLive do
-  use CompanyPocWeb, :live_view
+  use CompanyPocWeb, :live_view_without_auth
 
   alias CompanyPoc.Accounts
   alias CompanyPoc.Accounts.User

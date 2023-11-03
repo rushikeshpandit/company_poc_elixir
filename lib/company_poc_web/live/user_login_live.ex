@@ -1,5 +1,5 @@
 defmodule CompanyPocWeb.UserLoginLive do
-  use CompanyPocWeb, :live_view
+  use CompanyPocWeb, :live_view_without_auth
 
   def render(assigns) do
     ~H"""
