@@ -23,6 +23,11 @@ defmodule CompanyPocWeb.Router do
     get "/", PageController, :home
   end
 
+  pipeline :drawer_layout do
+    plug :browser
+    plug :put_root_layout, {CompanyPocWeb.Layouts, :drawer}
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", CompanyPocWeb do
   #   pipe_through :api
@@ -62,8 +67,12 @@ defmodule CompanyPocWeb.Router do
   end
 
   scope "/", CompanyPocWeb do
-    pipe_through [:browser, :require_authenticated_user]
+    pipe_through [:drawer_layout, :require_authenticated_user,]
     resources "/company", CompanyController
+  end
+
+  scope "/", CompanyPocWeb do
+    pipe_through [:browser, :require_authenticated_user]
 
     live_session :require_authenticated_user,
       on_mount: [{CompanyPocWeb.UserAuth, :ensure_authenticated}] do
