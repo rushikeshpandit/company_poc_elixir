@@ -12,8 +12,10 @@
     </script>
   </head>
   <body class="bg-white antialiased">
-    <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
-        <li>
+  <div class="flex h-auto w-auto ">
+  <div class=" w-2/12 h-screen bg-[#edf2f8] flex  items-center  justify-center">
+    <ul class="  ">
+        <li class= "w-auto h-20">
           <.link
             href={~p"/"}
             class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
@@ -21,7 +23,7 @@
             Home
           </.link>
         </li>
-        <li>
+        <li class= "w-auto h-20">
           <.link
             href={~p"/users/settings"}
             class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
@@ -29,7 +31,7 @@
             Settings
           </.link>
         </li>
-        <li>
+        <li class= "w-auto h-20">
           <.link
             href={~p"/users/log_out"}
             method="delete"
@@ -39,6 +41,8 @@
           </.link>
         </li>
     </ul>
+    </div>
     <%= @inner_content %>
+  </div>
   </body>
 </html>
