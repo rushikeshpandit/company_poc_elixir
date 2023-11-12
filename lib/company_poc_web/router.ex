@@ -69,6 +69,7 @@ defmodule CompanyPocWeb.Router do
   scope "/", CompanyPocWeb do
     pipe_through [:drawer_layout, :require_authenticated_user,]
     resources "/company", CompanyController
+    resources "/department", DepartmentController
   end
 
   scope "/", CompanyPocWeb do
