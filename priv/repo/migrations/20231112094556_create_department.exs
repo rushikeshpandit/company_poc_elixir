@@ -4,7 +4,7 @@ defmodule CompanyPoc.Repo.Migrations.CreateDepartment do
   def change do
     create table(:department) do
       add :title, :string
-      add :description, :string
+      add :description, :text
 
       timestamps(type: :utc_datetime)
     end

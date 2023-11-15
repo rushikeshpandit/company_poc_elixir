@@ -4,8 +4,9 @@ defmodule CompanyPoc.Departments do
   """
 
   import Ecto.Query, warn: false
+  require Logger
   alias CompanyPoc.Repo
-
+  alias CompanyPoc.Companies.Company
   alias CompanyPoc.Departments.Department
 
   @doc """
@@ -35,7 +36,11 @@ defmodule CompanyPoc.Departments do
       ** (Ecto.NoResultsError)
 
   """
-  def get_department!(id), do: Repo.get!(Department, id)
+  def get_department!(id) do
+    Department
+      |> Repo.get!(id)
+      |> Repo.preload(:company)
+  end
 
   @doc """
   Creates a department.
@@ -51,7 +56,7 @@ defmodule CompanyPoc.Departments do
   """
   def create_department(attrs \\ %{}) do
     %Department{}
-    |> Department.changeset(attrs)
+    |> change_department(attrs)
     |> Repo.insert()
   end
 
@@ -69,7 +74,7 @@ defmodule CompanyPoc.Departments do
   """
   def update_department(%Department{} = department, attrs) do
     department
-    |> Department.changeset(attrs)
+    |> change_department(attrs)
     |> Repo.update()
   end
 
@@ -99,6 +104,19 @@ defmodule CompanyPoc.Departments do
 
   """
   def change_department(%Department{} = department, attrs \\ %{}) do
-    Department.changeset(department, attrs)
+    companies = list_companies_by_id(attrs["department_ids"])
+    Logger.debug "companies value: #{inspect(companies)}"
+    Logger.debug "attrs value: #{inspect(attrs)}"
+
+    department
+    |> Repo.preload(:company)
+    |> Department.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:company, companies)
+  end
+
+  def list_companies_by_id(nil), do: []
+  def list_companies_by_id(company_ids) do
+    Logger.debug "company_ids value: #{inspect(company_ids)}"
+    Repo.all(from c in Company, where: c.id in ^company_ids)
   end
 end
