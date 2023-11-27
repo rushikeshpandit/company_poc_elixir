@@ -1,8 +1,0 @@
-<.header>
-  Edit Company <%= @company.id %>
-  <:subtitle>Use this form to manage company records in your database.</:subtitle>
-</.header>
-
-<.company_form changeset={@changeset} action={~p"/company/#{@company}"} />
-
-<.back navigate={~p"/company"}>Back to company</.back>
