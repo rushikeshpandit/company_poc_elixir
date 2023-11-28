@@ -1,0 +1,8 @@
+<.header>
+  Edit Department <%= @department.id %>
+  <:subtitle>Use this form to manage department records in your database.</:subtitle>
+</.header>
+
+<.department_form changeset={@changeset} action={~p"/departments/#{@department}"} />
+
+<.back navigate={~p"/departments"}>Back to departments</.back>
