@@ -1,0 +1,16 @@
+<.header>
+  Companies <%= @companies.id %>
+  <:subtitle>This is a companies record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/company/#{@companies}/edit"}>
+      <.button>Edit companies</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Title"><%= @companies.title %></:item>
+  <:item title="Description"><%= @companies.description %></:item>
+</.list>
+
+<.back navigate={~p"/company"}>Back to company</.back>
