@@ -18,4 +18,19 @@ defmodule CompanyPoc.EntityFixtures do
 
     companies
   end
+
+  @doc """
+  Generate a departments.
+  """
+  def departments_fixture(attrs \\ %{}) do
+    {:ok, departments} =
+      attrs
+      |> Enum.into(%{
+        description: "some description",
+        title: "some title"
+      })
+      |> CompanyPoc.Entity.create_departments()
+
+    departments
+  end
 end

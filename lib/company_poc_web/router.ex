@@ -22,6 +22,7 @@ defmodule CompanyPocWeb.Router do
 
     get "/", PageController, :home
     resources "/company", CompaniesController
+    resources "/department", DepartmentsController
   end
 
   # Other scopes may use custom stacks.

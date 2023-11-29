@@ -101,4 +101,100 @@ defmodule CompanyPoc.Entity do
   def change_companies(%Companies{} = companies, attrs \\ %{}) do
     Companies.changeset(companies, attrs)
   end
+
+  alias CompanyPoc.Entity.Departments
+
+  @doc """
+  Returns the list of department.
+
+  ## Examples
+
+      iex> list_department()
+      [%Departments{}, ...]
+
+  """
+  def list_department do
+    Repo.all(Departments)
+  end
+
+  @doc """
+  Gets a single departments.
+
+  Raises `Ecto.NoResultsError` if the Departments does not exist.
+
+  ## Examples
+
+      iex> get_departments!(123)
+      %Departments{}
+
+      iex> get_departments!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_departments!(id), do: Repo.get!(Departments, id)
+
+  @doc """
+  Creates a departments.
+
+  ## Examples
+
+      iex> create_departments(%{field: value})
+      {:ok, %Departments{}}
+
+      iex> create_departments(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_departments(attrs \\ %{}) do
+    %Departments{}
+    |> Departments.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a departments.
+
+  ## Examples
+
+      iex> update_departments(departments, %{field: new_value})
+      {:ok, %Departments{}}
+
+      iex> update_departments(departments, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_departments(%Departments{} = departments, attrs) do
+    departments
+    |> Departments.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a departments.
+
+  ## Examples
+
+      iex> delete_departments(departments)
+      {:ok, %Departments{}}
+
+      iex> delete_departments(departments)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_departments(%Departments{} = departments) do
+    Repo.delete(departments)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking departments changes.
+
+  ## Examples
+
+      iex> change_departments(departments)
+      %Ecto.Changeset{data: %Departments{}}
+
+  """
+  def change_departments(%Departments{} = departments, attrs \\ %{}) do
+    Departments.changeset(departments, attrs)
+  end
 end

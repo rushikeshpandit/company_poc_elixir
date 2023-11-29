@@ -1,0 +1,16 @@
+<.header>
+  Departments <%= @departments.id %>
+  <:subtitle>This is a departments record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/department/#{@departments}/edit"}>
+      <.button>Edit departments</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Title"><%= @departments.title %></:item>
+  <:item title="Description"><%= @departments.description %></:item>
+</.list>
+
+<.back navigate={~p"/department"}>Back to department</.back>
